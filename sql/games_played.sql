@@ -1,0 +1,2 @@
+
+SELECT COUNT(DISTINCT day) FROM guesses
