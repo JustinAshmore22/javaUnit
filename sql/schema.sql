@@ -14,12 +14,12 @@ day DATE NOT NULL,
 age int NOT NULL
 );
 
-CREATE TABLE VehicleOwns (
+CREATE TABLE VehicleOwns2 (
+name TEXT,
 FOREIGN KEY (name) REFERENCES People(name),
 make TEXT NOT NULL,
 model TEXT NOT NULL,
-year INTEGER NOT NULL,
-day DATE NOT NULL REFERENCES person(day)
+year int NOT NULL
 );
 
 
