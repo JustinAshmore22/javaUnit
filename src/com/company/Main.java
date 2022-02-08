@@ -93,7 +93,9 @@ public class Main {
         System.out.println(gamesPlayed());
 
     }
+
     public static void main(String[] args) {
+    populate_table(name, day, age);
 	showStatistics();
     }
 }
