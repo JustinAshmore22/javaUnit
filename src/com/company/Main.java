@@ -261,6 +261,54 @@ public class Main {
         }
     }
 
+    public static void remove_vehicle() {
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
+            String sql = "DELETE FROM VehicleOwns2 " +
+                    "WHERE name = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+
+            Scanner uInput = new Scanner(System.in);
+            System.out.print("Whose car would you like to delete?  ");
+            String nameof = uInput.nextLine();
+            System.out.println(nameof);
+
+            stmt.setString(1, nameof);
+
+
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void remove_people() {
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
+            String sql = "DELETE FROM people " +
+                    "WHERE name = '?'";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+
+            Scanner uInput = new Scanner(System.in);
+            System.out.print("Who would you like to delete?  ");
+            String nameof = uInput.nextLine();
+            System.out.println(nameof);
+            stmt.setString(1, nameof);
+
+
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void showStatistics(){
         Scanner s = new Scanner(System.in);
@@ -299,6 +347,7 @@ public class Main {
                     dvob();
                     break;
                 case 7:
+                    remove_vehicle();
 
                     break;
                 case 8:
