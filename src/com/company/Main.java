@@ -149,12 +149,93 @@ public class Main {
             System.exit(1);
         }
     }
+    public static void upco(){
+        try {
+            String url = "jdbc:postgresql:carperson";
+            String username = "justinashmore";
+            String password = "001067347";
+            Connection conn = DriverManager.getConnection(url, username, password);
+
+
+
+            String query = "UPDATE VehicleOwns2 set model = ? ,  make = ?, year = ? where name = ?";
+            PreparedStatement pmst = conn.prepareStatement(query);
+            Scanner uInput = new Scanner(System.in);
+            System.out.print("Enter First Name : ");
+            String nameof = uInput.nextLine();
+            System.out.print("Enter Make of car : ");
+            String make = uInput.nextLine();
+            System.out.print("Enter Model of car : ");
+            String model = uInput.nextLine();
+            System.out.print("Enter Year of car : ");
+            Integer year = uInput.nextInt();
+
+
+            pmst.setString(4, nameof);
+            pmst.setString(1, model);
+            pmst.setString(2, make);
+            pmst.setInt(3, year);
+
+
+
+
+
+
+            pmst.executeUpdate();
+    conn.close();
+
+        }
+        catch (Exception e)
+        {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+
+
+    }
+    public static void up(){
+        try {
+            String url = "jdbc:postgresql:carperson";
+            String username = "justinashmore";
+            String password = "001067347";
+            Connection conn = DriverManager.getConnection(url, username, password);
+
+
+
+            String query = "UPDATE people set age = ? where name = ?";
+            PreparedStatement pmst = conn.prepareStatement(query);
+            Scanner uInput = new Scanner(System.in);
+            System.out.print("Enter First Name : ");
+            String nameof = uInput.nextLine();
+            System.out.print("Enter Age : ");
+            Integer age = uInput.nextInt();
+
+            pmst.setString(2, nameof);
+            pmst.setInt(1, age);
+
+
+
+
+
+
+            pmst.executeUpdate();
+
+
+        }
+        catch (Exception e)
+        {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+
+
+    }
 
     public static void dcl(){
         try {
             Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM cars;");
+            ResultSet rs = st.executeQuery("SELECT * FROM carsbuy;");
             while (rs.next())
             {
                 System.out.println("________________________");
@@ -164,6 +245,7 @@ public class Main {
                 System.out.println(", Make: " + rs.getString("make"));
                 System.out.println(", Model: " + rs.getString("model"));
                 System.out.println(", Year: " + rs.getInt("year"));
+                System.out.println(", Cost: " + rs.getInt("cost"));
                 System.out.println("________________________");
 
 
@@ -205,10 +287,10 @@ public class Main {
                     gamesPlayed();
                     break;
                 case 3:
-
+                    remove_people();
                     break;
                 case 4:
-
+                    up();
                     break;
                 case 5:
                     add_vehicle();
@@ -220,7 +302,7 @@ public class Main {
 
                     break;
                 case 8:
-
+                    upco();
                     break;
                 case 9:
                     dcl();

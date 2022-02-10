@@ -14,16 +14,16 @@
 --age int NOT NULL
 --);
 --
---CREATE TABLE VehicleOwns2 (
---name TEXT,
---FOREIGN KEY (name) REFERENCES People(name),
---make TEXT NOT NULL,
---model TEXT NOT NULL,
---year int NOT NULL
---);
+CREATE TABLE VehicleOwns2 (
+name TEXT,
+FOREIGN KEY (name) REFERENCES People(name) ON DELETE CASCADE,
+make TEXT NOT NULL,
+model TEXT NOT NULL,
+year int NOT NULL
+);
 
 
-CREATE TABLE carsBuy (
+CREATE TABLE cars (
 make TEXT,
 
 model TEXT NOT NULL,
