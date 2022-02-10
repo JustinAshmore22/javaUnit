@@ -8,24 +8,28 @@
 --        - text
 --        - example: "scrap", "2020-10-12"
 
-CREATE TABLE People(
-name TEXT PRIMARY KEY,
-day DATE NOT NULL,
-age int NOT NULL
-);
-
-CREATE TABLE VehicleOwns2 (
-name TEXT,
-FOREIGN KEY (name) REFERENCES People(name),
-make TEXT NOT NULL,
-model TEXT NOT NULL,
-year int NOT NULL
-);
+--CREATE TABLE People(
+--name TEXT PRIMARY KEY,
+--day DATE NOT NULL,
+--age int NOT NULL
+--);
+--
+--CREATE TABLE VehicleOwns2 (
+--name TEXT,
+--FOREIGN KEY (name) REFERENCES People(name),
+--make TEXT NOT NULL,
+--model TEXT NOT NULL,
+--year int NOT NULL
+--);
 
 
 CREATE TABLE carsBuy (
-make TEXT NOT NULL,
+make TEXT,
+
 model TEXT NOT NULL,
-year INTEGER NOT NULL
+
+year INTEGER NOT NULL,
+cost INTEGER
+
 );
 

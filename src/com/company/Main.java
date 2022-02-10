@@ -20,30 +20,30 @@ public class Main {
 
 
 
-    public static String gamesPlayed() {
-        String result = "";
+    public static void gamesPlayed() {
+
         try {
             Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM People;");
             while (rs.next())
             {
+                System.out.println("________________________");
                 System.out.print("Name: " + rs.getString("name"));
-                System.out.print(", Date: " + rs.getString("day"));
+
                 System.out.println(", Age: " + rs.getString("age"));
 
             }
-                result = rs.getString("name");
+
                 rs.close();
                 st.close();
             }catch(SQLException ex){
             ex.printStackTrace();
             System.exit(1);
         }
-        return result;
+
     }
-    public static void populate_table(String name, Date day, int age){
-//        Connection conn = null;
+    public static void populate_table(){
 //
 //        Scanner user = new Scanner(System.in);
 //        Scanner date = new Scanner(System.in);
@@ -52,50 +52,180 @@ public class Main {
 
             String sql = "INSERT INTO CUSTOMERS" + " (customerID, firstname, lastname, age)" + " values (?,?,?,?)";
 
-            PreparedStatement psmt = con.prepareStatement(sql);
+            PreparedStatement psmt = conn.prepareStatement(sql);
 
             Scanner uInput = new Scanner(System.in);
-            String fn = uInput.nextLine();
-            String ln = uInput.nextLine();
-            Integer cID = uInput.nextInt();
+            System.out.print("Enter First Name : ");
+            String nameof = uInput.nextLine();
+            System.out.print("Enter Age : ");
+
             Integer age = uInput.nextInt();
 
-            psmt.setInt(1,cID);
-            psmt.setString(2,fn);
-            psmt.setString(3,ln);
-            psmt.setInt(4,age);
+
+            psmt.setString(1, nameof);
+            psmt.setInt(2, age);
+
+
 
             psmt.executeUpdate();
-            return confirm;
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            System.exit(1);
+
+        }
+
+
+    }
+
+    public static void add_vehicle(){
+        try {
+            String url = "jdbc:postgresql:carperson";
+            String username = "justinashmore";
+            String password = "001067347";
+            Connection conn = DriverManager.getConnection(url, username, password);
+
+            String sql = "INSERT INTO VehicleOwns2 (name, make, model, year)" + "VALUES (?, ?, ?, ?)";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            Scanner uInput = new Scanner(System.in);
+            System.out.print("Enter First Name : ");
+            String nameof = uInput.nextLine();
+            System.out.print("Enter Make of Car : ");
+
+            String make = uInput.nextLine();
+            System.out.print("Enter Model of Car : ");
+            String model = uInput.nextLine();
+            System.out.print("Enter Year of Car : ");
+            Integer year = uInput.nextInt();
+
+            psmt.setString(1, nameof);
+            psmt.setString(2, make);
+            psmt.setString(3, model);
+            psmt.setInt(4, year);
+            psmt.executeUpdate();
+
+    }catch(SQLException ex){
+        ex.printStackTrace();
+        System.exit(1);
+    }
+
+
+
+
+}
+
+    public static void dvob(){
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM vehicleowns2;");
+            while (rs.next())
+            {
+                System.out.println("________________________");
+
+                System.out.println("Name: " + rs.getString("name"));
+
+                System.out.println(", Make: " + rs.getString("make"));
+                System.out.println(", Model: " + rs.getString("model"));
+                System.out.println(", Year: " + rs.getInt("year"));
+                System.out.println("________________________");
+
+
+
+
+            }
+
+            rs.close();
+            st.close();
         }catch(SQLException ex){
             ex.printStackTrace();
             System.exit(1);
         }
-        return confirm;
-
     }
 
-}
+    public static void dcl(){
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM cars;");
+            while (rs.next())
+            {
+                System.out.println("________________________");
+
+
+
+                System.out.println(", Make: " + rs.getString("make"));
+                System.out.println(", Model: " + rs.getString("model"));
+                System.out.println(", Year: " + rs.getInt("year"));
+                System.out.println("________________________");
+
+
+
+
+            }
+
+            rs.close();
+            st.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+
     public static void showStatistics(){
-        System.out.println("Car LOT");
-        System.out.println("1.Add Person");
-        System.out.println("2.Display Person");
-        System.out.println("3.Remove Person");
-        System.out.println("4.Update Person");
-        System.out.println("5.Add Vehicle Owned By");
-        System.out.println("6.Display Vehicle Owned By");
-        System.out.println("7.Remove Vehicle Owned By");
-        System.out.println("8.Update Vehicle Owned By");
-        System.out.println("9.Display Vehicles");
+        Scanner s = new Scanner(System.in);
+        int ch;
+        do{
+            System.out.println("Car LOT");
+            System.out.println("1.Add Person");
+            System.out.println("2.Display Person");
+            System.out.println("3.Remove Person");
+            System.out.println("4.Update Person");
+            System.out.println("5.Add Vehicle Owned By");
+            System.out.println("6.Display Vehicle Owned By");
+            System.out.println("7.Remove Vehicle Owned By");
+            System.out.println("8.Update Vehicle Owned By");
+            System.out.println("9.Display Vehicles");
+            ch = s.nextInt();
+            switch(ch) {
+                case 1:
+                    populate_table();
+                    break;
+                case 2:
+                    System.out.print("People added: ");
 
-        System.out.print("People added: ");
+                    gamesPlayed();
+                    break;
+                case 3:
 
-        System.out.println(gamesPlayed());
+                    break;
+                case 4:
 
+                    break;
+                case 5:
+                    add_vehicle();
+                    break;
+                case 6:
+                    dvob();
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+
+                    break;
+                case 9:
+                    dcl();
+                    break;
+
+            }
+
+        }while(ch!=0);
     }
 
     public static void main(String[] args) {
-    populate_table(name, day, age);
+//    populate_table(name, day, age);
 	showStatistics();
     }
 }
