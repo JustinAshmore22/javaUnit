@@ -32,6 +32,9 @@ public class Main {
                 System.out.print("Name: " + rs.getString("name"));
 
                 System.out.println(", Age: " + rs.getString("age"));
+                System.out.println("________________________");
+
+
 
             }
 
@@ -49,8 +52,12 @@ public class Main {
 //        Scanner date = new Scanner(System.in);
 //        Scanner ageof = new Scanner(System.in);
         try {
+            String url = "jdbc:postgresql:carperson";
+            String username = "justinashmore";
+            String password = "001067347";
+            Connection conn = DriverManager.getConnection(url, username, password);
 
-            String sql = "INSERT INTO CUSTOMERS" + " (customerID, firstname, lastname, age)" + " values (?,?,?,?)";
+            String sql = "INSERT INTO People" + " (name, age, favcar)" + " values (?,?,?)";
 
             PreparedStatement psmt = conn.prepareStatement(sql);
 
