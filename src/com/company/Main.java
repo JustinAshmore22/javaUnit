@@ -309,6 +309,8 @@ public class Main {
         }
     }
 
+    // select from cars where make = ?
+
 
     public static void showStatistics(){
         Scanner s = new Scanner(System.in);
@@ -356,6 +358,8 @@ public class Main {
                 case 9:
                     dcl();
                     break;
+                case 10:
+                    // dealership stuff
 
             }
 
