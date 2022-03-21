@@ -57,7 +57,7 @@ public class Main {
             String password = "001067347";
             Connection conn = DriverManager.getConnection(url, username, password);
 
-            String sql = "INSERT INTO People" + " (name, age, favcar)" + " values (?,?,?)";
+            String sql = "INSERT INTO People" + " (name, age)" + " values (?,?)";
 
             PreparedStatement psmt = conn.prepareStatement(sql);
 
@@ -288,8 +288,7 @@ public class Main {
     public static void remove_people() {
         try{
             Connection conn = DriverManager.getConnection("jdbc:postgresql:carperson");
-            String sql = "DELETE FROM people " +
-                    "WHERE name = '?'";
+            String sql = "DELETE FROM people " + "WHERE name = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
 
@@ -300,11 +299,14 @@ public class Main {
             stmt.setString(1, nameof);
 
 
+
             stmt.executeUpdate();
             stmt.close();
             conn.close();
 
+
         } catch (SQLException e) {
+            System.out.println("nameof");
             e.printStackTrace();
         }
     }
@@ -358,8 +360,7 @@ public class Main {
                 case 9:
                     dcl();
                     break;
-                case 10:
-                    // dealership stuff
+
 
             }
 
